@@ -27,7 +27,7 @@ function PodiumCard({ team, medal, height }: { team: any; medal: string; height:
   const m = medals[medal];
 
   return (
-    <a href={`/team/${team.code}`}
+    <a href={`/team/${team.id||team.code}`}
       className="flex flex-col items-center justify-end group w-[clamp(90px,28vw,160px)]"
       style={{ minHeight: "clamp(140px, 35vw, 200px)" }}>
       <div className="flex flex-col items-center gap-2 mb-3">
@@ -149,7 +149,7 @@ export default function PredictionsPage() {
             </div>
             <div className="space-y-1">
               {rest.map((r: any, i: number) => (
-                <a key={r.code} href={`/team/${r.code}`}
+                <a key={r.code} href={`/team/${r.id||r.code}`}
                   className="flex items-center gap-3 rounded-lg px-4 py-2.5 transition-colors hover:bg-white/[0.02]"
                   style={{
                     animation: `fade-in 0.4s ease-out both`,

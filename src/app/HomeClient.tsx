@@ -130,8 +130,11 @@ function PowerRankings({ teams }: { teams: any[] }) {
     setTimeout(()=>setVisible(true),100);
   },[]);
 
+  // Build code→id lookup for correct team links
+  const teamIdByCode = useMemo(() => { const m=new Map<string,string>(); for(const t of teams) { if(t.tla) m.set(t.tla, String(t.id)); } return m; }, [teams]);
+
   const rankings = predictions?.rankings || teams.filter((t:any)=>t.tla).sort((a:any,b:any)=>(a.fifaRanking||99)-(b.fifaRanking||99)).slice(0,10).map((t:any,i:number)=>({
-    rank:i+1,team:t.shortName||t.name,code:t.tla,
+    rank:i+1,team:t.shortName||t.name,code:t.tla,id:teamIdByCode.get(t.tla)||String(t.id||""),
     probability:parseFloat((22-i*2.2).toFixed(1)),
     trend:(["up","up","down","stable","up","down","stable","up","stable","down"]as const)[i],
     change:[2.1,-1.5,0.8,1.2,-0.3,3.2,0,0.5,-2.1,0][i],
@@ -148,11 +151,11 @@ function PowerRankings({ teams }: { teams: any[] }) {
         <div className="flex items-end justify-center gap-3 md:gap-4 mb-6" style={{opacity:visible?1:0,transform:visible?"translateY(0)":"translateY(24px)",transition:"all 0.6s ease-out"}}>
           {podiumOrder.map((idx)=>{
             const t=top3[idx]; if(!t)return null;
-            return <a key={t.code} href={`/team/${t.code}`} className="flex flex-col items-center gap-2 group"><span className="text-2xl">{medals[idx]}</span><span className="text-3xl">{fg(t.code)}</span><span className="text-sm font-bold">{t.team}</span><span className="text-xl font-bold text-[var(--accent-primary)]">{t.probability}%</span></a>;
+            return <a key={t.code} href={`/team/${t.id||t.code}`} className="flex flex-col items-center gap-2 group"><span className="text-2xl">{medals[idx]}</span><span className="text-3xl">{fg(t.code)}</span><span className="text-sm font-bold">{t.team}</span><span className="text-xl font-bold text-[var(--accent-primary)]">{t.probability}%</span></a>;
           })}
         </div>
         <div className="space-y-1 max-w-3xl mx-auto">
-          {rest.map((r:any,i:number)=><a key={r.code} href={`/team/${r.code}`} className="flex items-center gap-3 rounded-lg px-4 py-2.5 transition-colors hover:bg-white/[0.02]" style={{opacity:visible?1:0,transform:visible?"translateY(0)":"translateY(12px)",transition:`all 0.4s ease-out ${(i+3)*60}ms`}}><span className="w-6 text-center text-sm font-semibold text-[var(--text-muted)]">{r.rank}</span><span className="text-lg">{fg(r.code)}</span><span className="flex-1 text-sm font-medium">{r.team}{cnName(r.code)?<span className="text-[var(--text-muted)] ml-1 text-[11px]">({cnName(r.code)})</span>:""}</span><div className="w-24 h-1.5 rounded-full bg-white/[0.04] overflow-hidden hidden sm:block"><div className="h-full rounded-full bg-[var(--accent-primary)] transition-all duration-1000" style={{width:`${r.probability*3}%`}}/></div><span className="data-value-sm text-[var(--accent-primary)] w-14 text-right">{r.probability}%</span></a>)}
+          {rest.map((r:any,i:number)=><a key={r.code} href={`/team/${r.id||r.code}`} className="flex items-center gap-3 rounded-lg px-4 py-2.5 transition-colors hover:bg-white/[0.02]" style={{opacity:visible?1:0,transform:visible?"translateY(0)":"translateY(12px)",transition:`all 0.4s ease-out ${(i+3)*60}ms`}}><span className="w-6 text-center text-sm font-semibold text-[var(--text-muted)]">{r.rank}</span><span className="text-lg">{fg(r.code)}</span><span className="flex-1 text-sm font-medium">{r.team}{cnName(r.code)?<span className="text-[var(--text-muted)] ml-1 text-[11px]">({cnName(r.code)})</span>:""}</span><div className="w-24 h-1.5 rounded-full bg-white/[0.04] overflow-hidden hidden sm:block"><div className="h-full rounded-full bg-[var(--accent-primary)] transition-all duration-1000" style={{width:`${r.probability*3}%`}}/></div><span className="data-value-sm text-[var(--accent-primary)] w-14 text-right">{r.probability}%</span></a>)}
         </div>
       </PageShell>
     </section>

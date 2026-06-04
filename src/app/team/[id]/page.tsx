@@ -36,14 +36,27 @@ export default function TeamDetailPage() {
 
   useEffect(() => {
     let cancelled = false;
-    Promise.all([
-      footballApi.teams.getById(id),
-      footballApi.schedule.standings(),
-      footballApi.teams.recentMatches(id).catch(() => ({ success: false, data: [] })),
-      footballApi.teams.upcomingMatches(id).catch(() => ({ success: false, data: [] })),
-    ]).then(([teamRes, standingsRes, recentRes, upcomingRes]) => {
-      if (cancelled) return;
-      if (teamRes.success && teamRes.data) {
+    async function load() {
+      // If id is a team code (letters), look up numeric ID first
+      let teamId = id;
+      if (!/^\d+$/.test(id)) {
+        try {
+          const teamsRes = await footballApi.teams.list();
+          if (teamsRes.success && Array.isArray(teamsRes.data)) {
+            const found = (teamsRes.data as any[]).find((t: any) => t.tla === id);
+            if (found) teamId = String(found.id);
+          }
+        } catch {}
+      }
+      try {
+        const [teamRes, standingsRes, recentRes, upcomingRes] = await Promise.all([
+          footballApi.teams.getById(teamId),
+          footballApi.schedule.standings(),
+          footballApi.teams.recentMatches(teamId).catch(() => ({ success: false, data: [] })),
+          footballApi.teams.upcomingMatches(teamId).catch(() => ({ success: false, data: [] })),
+        ]);
+        if (cancelled) return;
+        if (teamRes.success && teamRes.data) {
         const t = teamRes.data as any;
         setTeam(t);
         if (standingsRes.success && Array.isArray(standingsRes.data)) {
@@ -55,7 +68,10 @@ export default function TeamDetailPage() {
         if (recentRes.success && Array.isArray(recentRes.data)) setRecentMatches(recentRes.data);
         if (upcomingRes.success && Array.isArray(upcomingRes.data)) setUpcomingMatches(upcomingRes.data);
       } else setError("Team not found");
-    }).catch(e => setError(e.message)).finally(() => { if (!cancelled) setLoading(false); });
+      } catch(e: any) { if (!cancelled) setError(e.message); }
+      finally { if (!cancelled) setLoading(false); }
+    }
+    load();
     return () => { cancelled = true; };
   }, [id]);
 

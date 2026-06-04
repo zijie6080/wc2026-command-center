@@ -86,7 +86,7 @@ function EmptyFavorites({ tab }: { tab: Tab }) {
 
 function TeamFavCard({ item, onRemove }: { item: FavItem; onRemove: () => void }) {
   return (
-    <a href={`/team/${item.code || item.id}`}
+    <a href={`/team/${item.id || item.code}`}
       className="group relative flex items-center gap-4 rounded-xl border p-4 transition-all hover:-translate-y-0.5"
       style={{ borderColor: "var(--border-default)", background: "linear-gradient(135deg, var(--bg-card), rgba(15,15,26,0.6))" }}>
       <span className="text-3xl shrink-0">{flag(item.code || "")}</span>
