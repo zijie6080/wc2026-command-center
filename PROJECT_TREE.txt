@@ -1,0 +1,475 @@
+﻿├── .env.example
+├── .env.local
+├── .eslintrc.json
+├── .github/
+│  ├── ISSUE_TEMPLATE.md
+│  ├── workflows/
+│  │  ├── ci.yml
+│  │  ├── cron-daily-predictions.yml
+│  │  ├── preview.yml
+├── .gitignore
+├── .prettierrc
+├── components.json
+├── docs/
+│  ├── ai-analysis.md
+│  ├── api-design.md
+│  ├── champion-prediction.md
+│  ├── data-entities.md
+│  ├── data-flow.md
+│  ├── environment-variables.md
+│  ├── home-page.md
+│  ├── match-detail.md
+│  ├── matches-history.md
+│  ├── matches-page.md
+│  ├── my-favorites.md
+│  ├── player-detail.md
+│  ├── project-structure.md
+│  ├── schedule-page.md
+│  ├── settings-page.md
+│  ├── table-design-stats.md
+│  ├── table-design-teams-players-matches.md
+│  ├── table-design-users-favorites-notifications-predictions.md
+│  ├── team-detail.md
+├── next.config.ts
+├── package.json
+├── playwright.config.ts
+├── PROJECT_TREE.txt
+├── public/
+│  ├── crests/
+│  │  ├── .gitkeep
+│  ├── favicon.ico
+│  ├── flags/
+│  │  ├── .gitkeep
+│  ├── fonts/
+│  │  ├── .gitkeep
+│  ├── locales/
+│  │  ├── ar.json
+│  │  ├── en.json
+│  │  ├── es.json
+│  │  ├── fr.json
+│  │  ├── pt.json
+│  │  ├── zh.json
+│  ├── manifest.json
+│  ├── og/
+│  │  ├── .gitkeep
+│  ├── players/
+│  │  ├── .gitkeep
+│  ├── robots.txt
+│  ├── sw.js
+│  ├── venues/
+│  │  ├── .gitkeep
+├── README.md
+├── src/
+│  ├── app/
+│  │  ├── (main)/
+│  │  │  ├── community/
+│  │  │  │  ├── [postId]/
+│  │  │  │  │  ├── page.tsx
+│  │  │  │  ├── page.tsx
+│  │  │  ├── favorites/
+│  │  │  │  ├── loading.tsx
+│  │  │  │  ├── page.tsx
+│  │  │  ├── layout.tsx
+│  │  │  ├── matches/
+│  │  │  │  ├── [id]/
+│  │  │  │  │  ├── loading.tsx
+│  │  │  │  │  ├── page.tsx
+│  │  │  │  ├── history/
+│  │  │  │  │  ├── loading.tsx
+│  │  │  │  │  ├── page.tsx
+│  │  │  │  ├── loading.tsx
+│  │  │  │  ├── page.tsx
+│  │  │  ├── news/
+│  │  │  │  ├── [id]/
+│  │  │  │  │  ├── loading.tsx
+│  │  │  │  │  ├── page.tsx
+│  │  │  │  ├── loading.tsx
+│  │  │  │  ├── page.tsx
+│  │  │  ├── players/
+│  │  │  │  ├── [id]/
+│  │  │  │  │  ├── loading.tsx
+│  │  │  │  │  ├── page.tsx
+│  │  │  │  ├── compare/
+│  │  │  │  │  ├── loading.tsx
+│  │  │  │  │  ├── page.tsx
+│  │  │  │  ├── loading.tsx
+│  │  │  │  ├── page.tsx
+│  │  │  ├── predictions/
+│  │  │  │  ├── champion/
+│  │  │  │  │  ├── loading.tsx
+│  │  │  │  │  ├── page.tsx
+│  │  │  │  ├── golden-boot/
+│  │  │  │  │  ├── loading.tsx
+│  │  │  │  │  ├── page.tsx
+│  │  │  │  ├── loading.tsx
+│  │  │  │  ├── page.tsx
+│  │  │  ├── schedule/
+│  │  │  │  ├── loading.tsx
+│  │  │  │  ├── page.tsx
+│  │  │  ├── search/
+│  │  │  │  ├── loading.tsx
+│  │  │  │  ├── page.tsx
+│  │  │  ├── settings/
+│  │  │  │  ├── loading.tsx
+│  │  │  │  ├── page.tsx
+│  │  │  ├── standings/
+│  │  │  │  ├── bracket/
+│  │  │  │  │  ├── loading.tsx
+│  │  │  │  │  ├── page.tsx
+│  │  │  │  ├── groups/
+│  │  │  │  │  ├── loading.tsx
+│  │  │  │  │  ├── page.tsx
+│  │  │  │  ├── page.tsx
+│  │  │  ├── stats/
+│  │  │  │  ├── page.tsx
+│  │  │  │  ├── players/
+│  │  │  │  │  ├── loading.tsx
+│  │  │  │  │  ├── page.tsx
+│  │  │  │  ├── teams/
+│  │  │  │  │  ├── loading.tsx
+│  │  │  │  │  ├── page.tsx
+│  │  │  ├── teams/
+│  │  │  │  ├── [id]/
+│  │  │  │  │  ├── loading.tsx
+│  │  │  │  │  ├── page.tsx
+│  │  │  │  ├── loading.tsx
+│  │  │  │  ├── page.tsx
+│  │  ├── api/
+│  │  │  ├── cron/
+│  │  │  │  ├── cleanup-expired/
+│  │  │  │  │  ├── route.ts
+│  │  │  │  ├── update-predictions/
+│  │  │  │  │  ├── route.ts
+│  │  │  ├── matches/
+│  │  │  │  ├── [id]/
+│  │  │  │  │  ├── events/
+│  │  │  │  │  │  ├── route.ts
+│  │  │  │  │  ├── stats/
+│  │  │  │  │  │  ├── route.ts
+│  │  │  │  ├── route.ts
+│  │  │  ├── notifications/
+│  │  │  │  ├── route.ts
+│  │  │  ├── predictions/
+│  │  │  │  ├── route.ts
+│  │  │  ├── search/
+│  │  │  │  ├── route.ts
+│  │  │  ├── standings/
+│  │  │  │  ├── route.ts
+│  │  │  ├── webhooks/
+│  │  │  │  ├── data-provider/
+│  │  │  │  │  ├── route.ts
+│  │  │  │  ├── supabase/
+│  │  │  │  │  ├── route.ts
+│  │  ├── auth/
+│  │  │  ├── callback/
+│  │  │  │  ├── route.ts
+│  │  │  ├── layout.tsx
+│  │  │  ├── login/
+│  │  │  │  ├── page.tsx
+│  │  │  ├── register/
+│  │  │  │  ├── page.tsx
+│  │  │  ├── reset-password/
+│  │  │  │  ├── page.tsx
+│  │  ├── error.tsx
+│  │  ├── globals.css
+│  │  ├── layout.tsx
+│  │  ├── loading.tsx
+│  │  ├── not-found.tsx
+│  │  ├── page.tsx
+│  ├── config/
+│  │  ├── index.ts
+│  │  ├── metadata.ts
+│  │  ├── navigation.ts
+│  │  ├── site.ts
+│  │  ├── tournament.ts
+│  ├── features/
+│  │  ├── community/
+│  │  │  ├── components/
+│  │  │  │  ├── ChatMessage.tsx
+│  │  │  │  ├── ChatRoom.tsx
+│  │  │  │  ├── CommunityPost.tsx
+│  │  │  │  ├── PostEditor.tsx
+│  │  │  ├── hooks/
+│  │  │  │  ├── useChatRoom.ts
+│  │  │  ├── index.ts
+│  │  │  ├── types.ts
+│  │  │  ├── utils.ts
+│  │  ├── match/
+│  │  │  ├── components/
+│  │  │  │  ├── EventCard.tsx
+│  │  │  │  ├── EventFilter.tsx
+│  │  │  │  ├── EventTimeline.tsx
+│  │  │  │  ├── HeadToHead.tsx
+│  │  │  │  ├── LiveStatsPanel.tsx
+│  │  │  │  ├── MatchCard.tsx
+│  │  │  │  ├── MatchCardCompact.tsx
+│  │  │  │  ├── MatchClock.tsx
+│  │  │  │  ├── MatchCountdown.tsx
+│  │  │  │  ├── MatchHero.tsx
+│  │  │  │  ├── MatchHighlights.tsx
+│  │  │  │  ├── MatchInfoCard.tsx
+│  │  │  │  ├── MatchReport.tsx
+│  │  │  │  ├── MatchScoreBar.tsx
+│  │  │  │  ├── MatchSwitcher.tsx
+│  │  │  │  ├── PlayerRatingTable.tsx
+│  │  │  │  ├── PredictedLineup.tsx
+│  │  │  │  ├── XgTimeline.tsx
+│  │  │  ├── hooks/
+│  │  │  │  ├── useLiveMatches.ts
+│  │  │  │  ├── useMatch.ts
+│  │  │  │  ├── useMatchCountdown.ts
+│  │  │  │  ├── useMatchEvents.ts
+│  │  │  │  ├── useMatchStats.ts
+│  │  │  ├── index.ts
+│  │  │  ├── types.ts
+│  │  │  ├── utils.ts
+│  │  ├── news/
+│  │  │  ├── components/
+│  │  │  │  ├── NewsArticle.tsx
+│  │  │  │  ├── NewsCard.tsx
+│  │  │  │  ├── NewsCardFeatured.tsx
+│  │  │  │  ├── NewsTicker.tsx
+│  │  │  ├── hooks/
+│  │  │  │  ├── useNews.ts
+│  │  │  ├── index.ts
+│  │  │  ├── types.ts
+│  │  │  ├── utils.ts
+│  │  ├── player/
+│  │  │  ├── components/
+│  │  │  │  ├── PlayerCard.tsx
+│  │  │  │  ├── PlayerCompare.tsx
+│  │  │  │  ├── PlayerHero.tsx
+│  │  │  │  ├── PlayerHonors.tsx
+│  │  │  │  ├── PlayerMatchLog.tsx
+│  │  │  │  ├── PlayerRadar.tsx
+│  │  │  │  ├── PlayerStatsPanel.tsx
+│  │  │  │  ├── SimilarPlayers.tsx
+│  │  │  ├── hooks/
+│  │  │  │  ├── usePlayer.ts
+│  │  │  │  ├── usePlayerCompare.ts
+│  │  │  │  ├── usePlayerStats.ts
+│  │  │  ├── index.ts
+│  │  │  ├── types.ts
+│  │  │  ├── utils.ts
+│  │  ├── prediction/
+│  │  │  ├── components/
+│  │  │  │  ├── AdvancementHeatmap.tsx
+│  │  │  │  ├── ChampionRanking.tsx
+│  │  │  │  ├── ChampionTop5.tsx
+│  │  │  │  ├── DeepPrediction.tsx
+│  │  │  │  ├── GoldenBootRanking.tsx
+│  │  │  │  ├── MatchPredictionCard.tsx
+│  │  │  │  ├── ModelInfoCard.tsx
+│  │  │  │  ├── PredictedBracket.tsx
+│  │  │  │  ├── PredictionAccuracy.tsx
+│  │  │  │  ├── UserPredictionRanking.tsx
+│  │  │  ├── hooks/
+│  │  │  │  ├── useChampionPrediction.ts
+│  │  │  │  ├── usePredictions.ts
+│  │  │  │  ├── useUserPrediction.ts
+│  │  │  ├── index.ts
+│  │  │  ├── types.ts
+│  │  │  ├── utils.ts
+│  │  ├── schedule/
+│  │  │  ├── components/
+│  │  │  │  ├── DateGroupHeader.tsx
+│  │  │  │  ├── DateNavigator.tsx
+│  │  │  │  ├── QuickGroupFilter.tsx
+│  │  │  │  ├── QuickStageFilter.tsx
+│  │  │  │  ├── ScheduleCard.tsx
+│  │  │  │  ├── ScheduleCardCompact.tsx
+│  │  │  │  ├── ScheduleCardFeatured.tsx
+│  │  │  │  ├── WatchPlan.tsx
+│  │  │  ├── hooks/
+│  │  │  │  ├── useSchedule.ts
+│  │  │  │  ├── useScheduleFilters.ts
+│  │  │  ├── index.ts
+│  │  │  ├── types.ts
+│  │  │  ├── utils.ts
+│  │  ├── standing/
+│  │  │  ├── components/
+│  │  │  │  ├── BracketNode.tsx
+│  │  │  │  ├── BracketView.tsx
+│  │  │  │  ├── GroupSelector.tsx
+│  │  │  │  ├── GroupStandingsTable.tsx
+│  │  │  │  ├── ThirdPlaceCalculator.tsx
+│  │  │  ├── hooks/
+│  │  │  │  ├── useBracket.ts
+│  │  │  │  ├── useStandings.ts
+│  │  │  ├── index.ts
+│  │  │  ├── types.ts
+│  │  │  ├── utils.ts
+│  │  ├── team/
+│  │  │  ├── components/
+│  │  │  │  ├── AdvancementProb.tsx
+│  │  │  │  ├── CoachCard.tsx
+│  │  │  │  ├── GroupStandingTable.tsx
+│  │  │  │  ├── TeamCard.tsx
+│  │  │  │  ├── TeamHero.tsx
+│  │  │  │  ├── TeamHistory.tsx
+│  │  │  │  ├── TeamSchedule.tsx
+│  │  │  │  ├── TeamSquad.tsx
+│  │  │  │  ├── TeamStatsPanel.tsx
+│  │  │  ├── hooks/
+│  │  │  │  ├── useTeam.ts
+│  │  │  │  ├── useTeamSquad.ts
+│  │  │  │  ├── useTeamStats.ts
+│  │  │  ├── index.ts
+│  │  │  ├── types.ts
+│  │  │  ├── utils.ts
+│  │  ├── user/
+│  │  │  ├── components/
+│  │  │  │  ├── DisplaySettings.tsx
+│  │  │  │  ├── FavoriteCard.tsx
+│  │  │  │  ├── FavoritesList.tsx
+│  │  │  │  ├── LanguageSettings.tsx
+│  │  │  │  ├── NotificationItem.tsx
+│  │  │  │  ├── NotificationPanel.tsx
+│  │  │  │  ├── NotificationPrefs.tsx
+│  │  │  │  ├── PrivacySettings.tsx
+│  │  │  │  ├── ProfileSection.tsx
+│  │  │  │  ├── SettingsForm.tsx
+│  │  │  │  ├── UserMenu.tsx
+│  │  │  ├── hooks/
+│  │  │  │  ├── useAuth.ts
+│  │  │  │  ├── useFavorites.ts
+│  │  │  │  ├── useNotifications.ts
+│  │  │  │  ├── useSettings.ts
+│  │  │  │  ├── useUser.ts
+│  │  │  ├── index.ts
+│  │  │  ├── types.ts
+│  │  │  ├── utils.ts
+│  ├── i18n/
+│  │  ├── client.ts
+│  │  ├── config.ts
+│  │  ├── dictionaries/
+│  │  │  ├── ar.json
+│  │  │  ├── en.json
+│  │  │  ├── es.json
+│  │  │  ├── fr.json
+│  │  │  ├── ja.json
+│  │  │  ├── ko.json
+│  │  │  ├── pt.json
+│  │  │  ├── zh.json
+│  │  ├── index.ts
+│  │  ├── server.ts
+│  ├── realtime/
+│  │  ├── chat-channel.ts
+│  │  ├── index.ts
+│  │  ├── live-scores-channel.ts
+│  │  ├── match-events-channel.ts
+│  │  ├── notification-channel.ts
+│  │  ├── supabase-subscriptions.ts
+│  ├── services/
+│  │  ├── favorite-service.ts
+│  │  ├── index.ts
+│  │  ├── match-service.ts
+│  │  ├── news-service.ts
+│  │  ├── notification-service.ts
+│  │  ├── player-service.ts
+│  │  ├── prediction-service.ts
+│  │  ├── search-service.ts
+│  │  ├── standing-service.ts
+│  │  ├── stats-service.ts
+│  │  ├── supabase/
+│  │  │  ├── admin.ts
+│  │  │  ├── client.ts
+│  │  │  ├── middleware.ts
+│  │  │  ├── server.ts
+│  │  ├── team-service.ts
+│  │  ├── user-service.ts
+│  ├── shared/
+│  │  ├── components/
+│  │  │  ├── data-display/
+│  │  │  │  ├── Countdown.tsx
+│  │  │  │  ├── CountryLabel.tsx
+│  │  │  │  ├── FlagBadge.tsx
+│  │  │  │  ├── index.ts
+│  │  │  │  ├── ProgressBar.tsx
+│  │  │  │  ├── RadarChart.tsx
+│  │  │  │  ├── RankingTable.tsx
+│  │  │  │  ├── ScoreDisplay.tsx
+│  │  │  │  ├── StatBar.tsx
+│  │  │  │  ├── StatCard.tsx
+│  │  │  ├── feedback/
+│  │  │  │  ├── EmptyState.tsx
+│  │  │  │  ├── ErrorState.tsx
+│  │  │  │  ├── index.ts
+│  │  │  │  ├── LoadingSkeleton.tsx
+│  │  │  │  ├── OfflineBanner.tsx
+│  │  │  ├── index.ts
+│  │  │  ├── input/
+│  │  │  │  ├── DatePicker.tsx
+│  │  │  │  ├── FilterBar.tsx
+│  │  │  │  ├── index.ts
+│  │  │  │  ├── SearchCommand.tsx
+│  │  │  │  ├── TeamSelector.tsx
+│  │  │  ├── layout/
+│  │  │  │  ├── BottomTabBar.tsx
+│  │  │  │  ├── Footer.tsx
+│  │  │  │  ├── HamburgerMenu.tsx
+│  │  │  │  ├── index.ts
+│  │  │  │  ├── PageHeader.tsx
+│  │  │  │  ├── Sidebar.tsx
+│  │  │  │  ├── TopNavbar.tsx
+│  │  │  ├── ui/
+│  │  │  │  ├── avatar.tsx
+│  │  │  │  ├── badge.tsx
+│  │  │  │  ├── button.tsx
+│  │  │  │  ├── card.tsx
+│  │  │  │  ├── command.tsx
+│  │  │  │  ├── dialog.tsx
+│  │  │  │  ├── dropdown-menu.tsx
+│  │  │  │  ├── hover-card.tsx
+│  │  │  │  ├── index.ts
+│  │  │  │  ├── input.tsx
+│  │  │  │  ├── popover.tsx
+│  │  │  │  ├── scroll-area.tsx
+│  │  │  │  ├── select.tsx
+│  │  │  │  ├── sheet.tsx
+│  │  │  │  ├── skeleton.tsx
+│  │  │  │  ├── tabs.tsx
+│  │  │  │  ├── toast.tsx
+│  │  │  │  ├── tooltip.tsx
+│  │  ├── hooks/
+│  │  │  ├── index.ts
+│  │  │  ├── useDebounce.ts
+│  │  │  ├── useKeyboard.ts
+│  │  │  ├── useLocalStorage.ts
+│  │  │  ├── useMediaQuery.ts
+│  │  │  ├── useOnlineStatus.ts
+│  │  │  ├── useScrollSpy.ts
+│  │  │  ├── useShare.ts
+│  │  ├── utils/
+│  │  │  ├── cn.ts
+│  │  │  ├── constants.ts
+│  │  │  ├── fifa-ranking.ts
+│  │  │  ├── format.ts
+│  │  │  ├── index.ts
+│  │  │  ├── match-status.ts
+│  │  │  ├── timezone.ts
+│  ├── stores/
+│  │  ├── index.ts
+│  │  ├── useLiveStore.ts
+│  │  ├── useNotificationStore.ts
+│  │  ├── useSearchStore.ts
+│  │  ├── useUIStore.ts
+│  │  ├── useUserStore.ts
+│  ├── types/
+│  │  ├── api.ts
+│  │  ├── database.ts
+│  │  ├── events.ts
+│  │  ├── index.ts
+│  │  ├── models.ts
+│  │  ├── predictions.ts
+├── supabase/
+│  ├── config.toml
+│  ├── migrations/
+│  │  ├── .gitkeep
+│  ├── schemas/
+│  │  ├── .gitkeep
+│  ├── seed.sql
+├── tailwind.config.ts
+├── tsconfig.json
+├── vitest.config.ts
+├── 产品规划文档-WorldCup2026-CommandCenter.md
