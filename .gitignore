@@ -10,3 +10,5 @@ yarn-debug.log*
 Thumbs.db
 .vscode/
 .idea/
+
+.vercel
